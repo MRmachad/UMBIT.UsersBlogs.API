@@ -1,0 +1,6 @@
+@UMBIT.UsersBlogs.API_HostAddress = http://localhost:5114
+
+GET {{UMBIT.UsersBlogs.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
