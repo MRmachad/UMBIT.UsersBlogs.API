@@ -3,21 +3,34 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <UserSecretsId>b6c6354b-11f7-4285-83f5-ea211cd446b3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.25">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core.API\UMBIT.Prototico.Core.API.csproj" />
     <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core\UMBIT.Prototico.Core.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.API.Mappers\UMBIT.UsersBlogs.API.Mappers.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.Infra\UMBIT.UsersBlogs.Infra.csproj" />
   </ItemGroup>
 
 </Project>

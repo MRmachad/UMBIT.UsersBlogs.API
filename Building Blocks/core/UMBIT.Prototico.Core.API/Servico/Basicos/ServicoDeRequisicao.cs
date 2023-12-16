@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
 using UMBIT.Prototico.Core.API.Servico.Interface;
 
 namespace UMBIT.Prototico.Core.API.Servico.Basicos
@@ -29,24 +31,11 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
                     nameValue.Add(keyValue.Key, keyValue.Value);
                 }
 
-            string queryParam = String.IsNullOrEmpty(nameValue?.ToString()) ? "" : nameValue.ToString();
-
-            var response = await this.cliente.GetAsync((path), HttpCompletionOption.ResponseContentRead);
+            var response = await this.cliente.GetAsync(QueryHelpers.AddQueryString(path, keyValuePairs), HttpCompletionOption.ResponseContentRead);
 
             var filterRes = await this.TratarerrosResponseAsync<T>(response);
             return filterRes;
 
-        }
-
-        public async Task<ResponseResult> ExecutePostAsync<T>(T toContent, string path, Encoding encoding, string mediaType)
-            where T : class
-        {
-            var content = new StringContent(JsonSerializer.Serialize(toContent), Encoding.UTF8, mediaType);
-
-            var response = await this.cliente.PostAsync(path, content);
-
-            var filterRes = await this.TratarerrosResponseAsync(response);
-            return filterRes;
         }
     }
 }

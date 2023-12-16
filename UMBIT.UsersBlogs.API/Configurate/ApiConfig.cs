@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Prototico.Core.API.Configurate.ApiConfigurate;
+using Prototico.Core.API.Configurate.Swagger;
 using System.Runtime.CompilerServices;
 
 namespace UMBIT.UsersBlogs.API.Configurate
@@ -10,13 +12,12 @@ namespace UMBIT.UsersBlogs.API.Configurate
     {
         public static IServiceCollection AddApiConfig(this IServiceCollection services)
         {
-
             // Add services to the container.
 
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddUMBITSwaggerConfiguration();
 
             return services;
         }
@@ -29,6 +30,7 @@ namespace UMBIT.UsersBlogs.API.Configurate
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();

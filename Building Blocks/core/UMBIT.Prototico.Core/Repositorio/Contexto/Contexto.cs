@@ -15,11 +15,13 @@ namespace UMBIT.Core.Repositorio.Contexto
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 try
                 {
+                    if (assembly.FullName.StartsWith("UMBIT"))
+                        Console.WriteLine(assembly.FullName);
                     if (assembly != null)
                         assembly.GetTypes()
                         .Where(t =>
@@ -55,11 +57,6 @@ namespace UMBIT.Core.Repositorio.Contexto
 
                 if (objeto.State == EntityState.Added)
                 {
-                    if (baseEntity.IdKey == Guid.Empty)
-                    {
-                        baseEntity.IdKey = Guid.NewGuid();
-                    }
-
                     baseEntity.DataCriacao = DateTime.Now;
                     baseEntity.DataAtualizacao = DateTime.Now;
                 }

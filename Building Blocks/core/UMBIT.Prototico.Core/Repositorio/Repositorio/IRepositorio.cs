@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System;
 using System.Runtime.CompilerServices;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.Core.Repositorio.Repositorio
 {
@@ -39,6 +40,12 @@ namespace UMBIT.Core.Repositorio.Repositorio
         /// </summary>
         /// <param name="objeto">Objeto a ser adicionado</param>
         void Adicione(T objeto);
+
+        /// <summary>
+        /// Adiciona ou atualize objetos na Base de Dados
+        /// </summary>
+        /// <param name="objeto">Objetos a serem adicionados ou atualizados</param>
+        void AdicionetOuAtualize(T objeto);
 
         /// <summary>
         /// Adiciona objetos na Base de Dados

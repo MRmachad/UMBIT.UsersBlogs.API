@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UMBIT.Core.Repositorio;
+using UMBIT.Core.Repositorio.BaseEntity;
 using UMBIT.Core.Repositorio.Repositorio;
 using UMBIT.CORE.API.Servico.Interface;
 
@@ -12,7 +13,7 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
         private IUnidadeDeTrabalho UnidadeDeTrabalho { get; set; }
         public ServicoDeEntidadeBase(IUnidadeDeTrabalho dataServiceFactory)
         {
-            Repositorio = dataServiceFactory.GetRepositorio<T>();
+            Repositorio = dataServiceFactory.ObtentorDeRepositorio<T>();
         }
         public void AtualizeEntidade(T Entidade)
         {

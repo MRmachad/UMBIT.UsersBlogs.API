@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.Core.Repositorio.Repositorio
 {
@@ -12,7 +14,7 @@ namespace UMBIT.Core.Repositorio.Repositorio
     {
         protected readonly DbContext Contexto;
 
-        protected const int TAMANHO_PAGINA = 50;
+        protected const int TAMANHO_PAGINA = 100;
 
         public Repositorio(DbContext contexto)
         {
@@ -49,6 +51,18 @@ namespace UMBIT.Core.Repositorio.Repositorio
             {
                 return this.Contexto.Set<T>().AsNoTracking().Where(predicado);
             });
+        }
+        public virtual void AdicionetOuAtualize(T objeto)
+        {
+            MiddlewareDeRepositorio(() =>
+           {
+               var obj = this.Contexto.Set<T>().Attach(objeto);
+
+               obj.State = obj.State != EntityState.Unchanged ?
+                                          EntityState.Added :
+                                          EntityState.Modified;
+           });
+
         }
 
         public virtual void Adicione(T objeto)
@@ -119,6 +133,6 @@ namespace UMBIT.Core.Repositorio.Repositorio
             }
         }
 
-        
+
     }
 }

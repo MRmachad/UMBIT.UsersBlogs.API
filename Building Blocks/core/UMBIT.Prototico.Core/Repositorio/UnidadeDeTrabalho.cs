@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Runtime.CompilerServices;
+using UMBIT.Core.Repositorio.BaseEntity;
 using UMBIT.Core.Repositorio.Repositorio;
 namespace UMBIT.Core.Repositorio
 {
@@ -15,16 +16,20 @@ namespace UMBIT.Core.Repositorio
         {
             this.DbContext = dbContext;
         }
-        public IRepositorio<T> GetRepositorio<T>() where T : class
+        public IRepositorio<T> ObtentorDeRepositorio<T>() where T : class
         {
             return new Repositorio<T>(this.DbContext);
+        }
+        public TRepo ObtentorDeRepositorio<T, TRepo>() where T : class where TRepo : IRepositorio<T>
+        {
+            return (TRepo)this.ObtentorDeRepositorio<T>();
         }
         public int SalveAlteracoes()
         {
             return this.DbContext.SaveChanges();
         }
 
-        public void InicieTransacao([CallerFilePath] string arquivo = null, [CallerMemberName] string metodo = null)
+        public void InicieTransacao()
         {
             if (!this.TransacaoAberta)
             {
@@ -34,7 +39,7 @@ namespace UMBIT.Core.Repositorio
             }
         }
 
-        public void FinalizeTransacao([CallerFilePath] string arquivo = null, [CallerMemberName] string metodo = null)
+        public void FinalizeTransacao()
         {
             if (this.TransacaoAberta)
             {
@@ -45,7 +50,7 @@ namespace UMBIT.Core.Repositorio
             }
         }
 
-        public void RevertaTransacao([CallerFilePath] string arquivo = null, [CallerMemberName] string metodo = null)
+        public void RevertaTransacao()
         {
             if (this.TransacaoAberta)
             {
