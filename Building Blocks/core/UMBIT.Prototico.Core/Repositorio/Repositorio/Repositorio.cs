@@ -52,16 +52,23 @@ namespace UMBIT.Core.Repositorio.Repositorio
                 return this.Contexto.Set<T>().AsNoTracking().Where(predicado);
             });
         }
-        public virtual void AdicionetOuAtualize(T objeto)
+        public virtual void AdicionetOuAtualize(T objeto, params object[] args)
         {
             MiddlewareDeRepositorio(() =>
-           {
-               var obj = this.Contexto.Set<T>().Attach(objeto);
+            {
+                var _objeto = this.Contexto.Set<T>().Find(args);
+                if (_objeto == null)
+                {
+                    var entryAttachObj = this.Contexto.Set<T>().Attach(objeto);
 
-               obj.State = obj.State != EntityState.Unchanged ?
-                                          EntityState.Added :
-                                          EntityState.Modified;
-           });
+                    entryAttachObj.State = EntityState.Added;
+                }
+                else
+                {
+                    this.Contexto.Entry(_objeto).State = EntityState.Detached;
+                   this.Contexto.Entry(objeto).State = EntityState.Modified;
+                }
+            });
 
         }
 
@@ -109,6 +116,21 @@ namespace UMBIT.Core.Repositorio.Repositorio
             });
         }
 
+        public virtual void RemovaTodos(params T[] objetos)
+        {
+            MiddlewareDeRepositorio(() =>
+            {
+                this.Contexto.Set<T>().RemoveRange(objetos);
+            });
+        }
+        public virtual void RemovaTodos()
+        {
+            MiddlewareDeRepositorio(() =>
+            {
+                var objetos = this.ObtenhaTodos();
+                this.Contexto.Set<T>().RemoveRange(objetos);
+            });
+        }
         protected void MiddlewareDeRepositorio(Action method)
         {
             try

@@ -45,7 +45,7 @@ namespace UMBIT.Core.Repositorio.Repositorio
         /// Adiciona ou atualize objetos na Base de Dados
         /// </summary>
         /// <param name="objeto">Objetos a serem adicionados ou atualizados</param>
-        void AdicionetOuAtualize(T objeto);
+        void AdicionetOuAtualize(T objeto, params object[] args);
 
         /// <summary>
         /// Adiciona objetos na Base de Dados
@@ -64,5 +64,16 @@ namespace UMBIT.Core.Repositorio.Repositorio
         /// </summary>
         /// <param name="objeto">Objeto a ser removido</param>
         void Remova(T objeto);
+
+        /// <summary>
+        /// Remova objetos da base de dados
+        /// </summary>
+        /// <param name="objeto">Objetos a ser removido</param>
+        void RemovaTodos(params T[] objetos);
+
+        /// <summary>
+        /// Remova objetos da base de dados
+        /// </summary>
+        void RemovaTodos();
     }
 }

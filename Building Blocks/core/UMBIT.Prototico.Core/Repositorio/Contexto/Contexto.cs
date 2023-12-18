@@ -57,6 +57,10 @@ namespace UMBIT.Core.Repositorio.Contexto
 
                 if (objeto.State == EntityState.Added)
                 {
+                    if (baseEntity.IdKey == Guid.Empty)
+                    {
+                        baseEntity.IdKey = Guid.NewGuid();
+                    }
                     baseEntity.DataCriacao = DateTime.Now;
                     baseEntity.DataAtualizacao = DateTime.Now;
                 }

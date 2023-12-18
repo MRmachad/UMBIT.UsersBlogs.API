@@ -7,12 +7,13 @@ using UMBIT.UsersBlogs.Dominio.Servicos.Interfaces;
 
 namespace UMBIT.UsersBlogs.API.Configurate
 {
-    public static class InjectDependenceConfig
+    public static class InjectDependencyConfig
     {
 
         public static IServiceCollection AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IServicoDeUser, ServicoDeUser>()
+                    .AddScoped<IServicoDeBlog, ServicoDeBlog>()
                     .AddScoped<IServicoDeRepositorioExterno, SlingAcademyService>()
                     .AddUMBITRequestConfigurate<IServicoDeRepositorioExterno, SlingAcademyService>(configuration, "RepositorioExterno");
 

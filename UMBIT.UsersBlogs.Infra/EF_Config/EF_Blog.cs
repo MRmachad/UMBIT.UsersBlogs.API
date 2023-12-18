@@ -12,6 +12,7 @@ namespace UMBIT.UsersBlogs.Infra.EF_Config
     {
         public override void ConfigureEntidade(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Blog> builder)
         {
+            builder.HasKey(t => t.Id);
         }
     }
 }

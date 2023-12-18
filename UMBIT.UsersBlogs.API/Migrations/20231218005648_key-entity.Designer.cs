@@ -11,8 +11,8 @@ using UMBIT.Core.Repositorio.Contexto;
 namespace UMBIT.UsersBlogs.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231216171546_key-gen-fix")]
-    partial class keygenfix
+    [Migration("20231218005648_key-entity")]
+    partial class keyentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
 
             modelBuilder.Entity("UMBIT.UsersBlogs.Dominio.Entidades.Blog", b =>
                 {
-                    b.Property<int>("IdKey")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -48,7 +48,8 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("IdKey")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int");
 
                     b.Property<string>("PhotoUrl")
@@ -63,7 +64,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("IdKey");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -72,7 +73,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
 
             modelBuilder.Entity("UMBIT.UsersBlogs.Dominio.Entidades.User", b =>
                 {
-                    b.Property<int>("IdKey")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -100,7 +101,8 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("IdKey")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int");
 
                     b.Property<string>("Job")
@@ -130,7 +132,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Zipcode")
                         .HasColumnType("longtext");
 
-                    b.HasKey("IdKey");
+                    b.HasKey("Id");
 
                     b.ToTable("User");
                 });

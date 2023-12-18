@@ -12,9 +12,11 @@ namespace UMBIT.UsersBlogs.Infra.EF_Config
     {
         public override void ConfigureEntidade(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User> builder)
         {
+            builder.HasKey(t => t.Id);
             builder.HasMany(t => t.Blogs)
                    .WithOne()
-                   .HasForeignKey(t => t.UserId);
+                   .HasForeignKey(t => t.UserId)
+                   .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Cascade);
         }
     }
 }

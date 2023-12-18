@@ -9,9 +9,9 @@ using UMBIT.UsersBlogs.Dominio.Servicos.Interfaces;
 
 namespace UMBIT.UsersBlogs.Dominio.Servicos
 {
-    public class ServicoDeUser : ServicoDeEntidadeBase<User>, IServicoDeUser
+    public class ServicoDeBlog : ServicoDeEntidadeBase<Blog>, IServicoDeBlog
     {
-        public ServicoDeUser(IUnidadeDeTrabalho dataServiceFactory) : base(dataServiceFactory)
+        public ServicoDeBlog(IUnidadeDeTrabalho dataServiceFactory) : base(dataServiceFactory)
         {
         }
     }

@@ -1,0 +1,25 @@
+version: "3"
+name: user-blog
+services:
+  db:
+    image: mariadb
+    container_name: userblog_db
+    environment:
+      MARIADB_DATABASE: "UserBlog"
+      MARIADB_ROOT_PASSWORD: "qwerty"
+      TZ: "Brazil/East"
+    volumes:
+    - /home/vol:/var/lib/mysql
+    ports:
+        - "3306:3306"
+    restart:
+        unless-stopped
+
+  webapi:
+    build: "."
+    container_name: userblog_api
+    ports:
+    - "4950:8080"
+    - "4951:8081"
+    restart:
+        unless-stopped

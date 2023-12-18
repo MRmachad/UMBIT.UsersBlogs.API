@@ -11,8 +11,8 @@ using UMBIT.Core.Repositorio.Contexto;
 namespace UMBIT.UsersBlogs.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231216171350_key-gen")]
-    partial class keygen
+    [Migration("20231218013341_key-entity-fix-0")]
+    partial class keyentityfix0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,8 +48,11 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("IdKey")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("IdKey")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Index")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int");
 
                     b.Property<string>("PhotoUrl")
@@ -101,8 +104,11 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("IdKey")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("IdKey")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Index")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int");
 
                     b.Property<string>("Job")

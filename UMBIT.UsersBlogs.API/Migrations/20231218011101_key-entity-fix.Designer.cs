@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UMBIT.Core.Repositorio.Contexto;
 
@@ -10,9 +11,10 @@ using UMBIT.Core.Repositorio.Contexto;
 namespace UMBIT.UsersBlogs.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231218011101_key-entity-fix")]
+    partial class keyentityfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("IdKey")
+                    b.Property<Guid>("IdGenerico")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PhotoUrl")
@@ -98,7 +100,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("IdKey")
+                    b.Property<Guid>("IdGenerico")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Job")

@@ -41,6 +41,8 @@ namespace UMBIT.UsersBlogs.Dominio.Facade.slingacademy.Servicos
             this.UnidadeDeTrabalho.InicieTransacao();
             try
             {
+                this.RepositorioDeUser.RemovaTodos();
+                this.UnidadeDeTrabalho.SalveAlteracoes();
                 var totalUser = 0;
                 var offset = 0;
 
@@ -58,7 +60,7 @@ namespace UMBIT.UsersBlogs.Dominio.Facade.slingacademy.Servicos
 
                     var aux = this.Mapper.Map<List<User>>(userList.Frombory.Users);
                     foreach (var item in aux)
-                        this.RepositorioDeUser.AdicionetOuAtualize(item);
+                        this.RepositorioDeUser.AdicionetOuAtualize(item, item.Id);
 
                     totalUser = userList.Frombory.TotalUsers;
                     offset += LIST_COUNT;
@@ -100,7 +102,7 @@ namespace UMBIT.UsersBlogs.Dominio.Facade.slingacademy.Servicos
 
                     var aux = this.Mapper.Map<List<Blog>>(blogListresult.Frombory.Blogs);
                     foreach (var item in aux)
-                        this.RepositorioDeBlog.AdicionetOuAtualize(item);
+                        this.RepositorioDeBlog.AdicionetOuAtualize(item, item.Id);
 
                     totalUser = blogListresult.Frombory.TotalBlogs;
                     offset += LIST_COUNT;
