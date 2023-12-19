@@ -9,7 +9,7 @@ services:
       MARIADB_ROOT_PASSWORD: "qwerty"
       TZ: "Brazil/East"
     volumes:
-    - /home/vol:/var/lib/mysql
+    - ./vol:/var/lib/mysql
     ports:
         - "3306:3306"
     restart:
@@ -18,6 +18,8 @@ services:
   webapi:
     build: "."
     container_name: userblog_api
+    environment:
+      ConnectionStrings__mariadb : "Server=userblog_db;Port=3306;User=root;Password=qwerty;Database=UserBlog"
     ports:
     - "4950:8080"
     - "4951:8081"

@@ -5,7 +5,7 @@ using UMBIT.UsersBlogs.Dominio.Servicos.Interfaces;
 namespace UMBIT.UsersBlogs.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BlogController : ControllerBase
     {
         private IServicoDeBlog ServicoDeblog;

@@ -25,13 +25,9 @@ namespace UMBIT.UsersBlogs.API.Configurate
         public static void UseApiConfig(this IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            // Configure the HTTP request pipeline.
-            if (env.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 

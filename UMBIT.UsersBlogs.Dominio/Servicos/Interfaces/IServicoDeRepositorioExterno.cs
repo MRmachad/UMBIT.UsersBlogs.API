@@ -5,6 +5,6 @@ namespace UMBIT.UsersBlogs.Dominio.Servicos.Interfaces
 {
     public interface IServicoDeRepositorioExterno : IServicoDeRequisicao
     {
-        Task UpdateDatabaseAsync();
+        Task SincronizeDatabaseAsync();
     }
 }

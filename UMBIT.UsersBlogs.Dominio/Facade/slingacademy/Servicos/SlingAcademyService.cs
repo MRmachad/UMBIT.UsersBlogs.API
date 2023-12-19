@@ -30,7 +30,7 @@ namespace UMBIT.UsersBlogs.Dominio.Facade.slingacademy.Servicos
             this.RepositorioDeUser = unidadeDeTrabalho.ObtentorDeRepositorio<User>();
         }
 
-        public async Task UpdateDatabaseAsync()
+        public async Task SincronizeDatabaseAsync()
         {
             await this.UpdateUsers();
             await this.UpdateBlogs();

@@ -1,0 +1,261 @@
+﻿openapi: 3.0.3
+info:
+  title: Enrollment API
+  description: ""
+  version: "0.1"
+  x-logo:
+    url: "https://"
+    altText: Ooja IT
+servers:
+  - url: https://{environment}/api/v1
+    variables:
+      environment:
+        default: localhost:5001
+        enum:
+          - www.ooja.com 
+          - localhost:5001
+paths:
+  "/repositorio/sincronize":
+    post:
+      tags:
+        - Repositorio
+      operationId: Sincronizacao
+      description: Sincronize banco de com repositorio externo
+      responses:
+        "200":
+          description: Ok
+  "/Usuario/lista/{offset}/{countListagem}/{fistName}":
+    get:
+      tags:
+        - Usuario
+      operationId: Listagem
+      description: Listagem de Usuarios
+      responses:
+        "200":
+          description: Ok 
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersResult"
+    parameters:
+    - name: offset
+      in: path
+      required: true
+      description: offset
+      schema:
+        type: integer
+        format: int32
+    - name: countListagem
+      in: path
+      required: true
+      description: countListagem
+      schema:
+        type: integer
+        format: int32
+    - name: fistName
+      in: path
+      required: true
+      description: fistName
+      schema:
+        type: string
+  "/Usuario/unico/{id}":
+    get:
+      tags:
+        - Usuario
+      operationId: Unico
+      description: Obtenha Unico Usuario
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: id
+      schema:
+        type: integer
+        format: int32
+  "/Usuario/remova/{id}":
+    delete:
+      tags:
+        - Usuario
+      operationId: Remocao
+      description: Remova Unico Usuario
+      responses:
+        "200":
+          description: Ok
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: id
+      schema:
+        type: integer
+        format: int32
+  "/Blog/lista/{offset}/{countListagem}/{title}":
+    get:
+      tags:
+        - Blog
+      operationId: Listagem
+      description: Listagem de Blogs
+      responses:
+        "200":
+          description: Ok 
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlogsResult"
+    parameters:
+    - name: offset
+      in: path
+      required: true
+      description: offset
+      schema:
+        type: integer
+        format: int32
+    - name: countListagem
+      in: path
+      required: true
+      description: countListagem
+      schema:
+        type: integer
+        format: int32
+    - name: title
+      in: path
+      required: true
+      description: title
+      schema:
+        type: string
+  "/Blog/unico/{id}":
+    get:
+      tags:
+        - Blog
+      operationId: Unico
+      description: Obtenha Unico Blog
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Blog"
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: id
+      schema:
+        type: integer
+        format: int32
+  "/Blog/remova/{id}":
+    delete:
+      tags:
+        - Blog
+      operationId: Remocao
+      description: Remova Unico Blog
+      responses:
+        "200":
+          description: Ok
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: id
+      schema:
+        type: integer
+        format: int32
+components:
+  schemas:
+    UsersResult:
+      properties:
+        total_users:
+          type: int32
+        offset:
+          type: int32
+        limit:
+          type: int32
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+      additionalProperties: false
+    User:
+      properties:
+        id:
+          type: string
+        gender:
+          type: string
+        date_of_birth:
+          type: string
+        job:
+          type: string
+        city:
+          type: string
+        zipcode:
+          type: string
+        latitude:
+          type: string
+        profile_picture:
+          type: string
+        email:
+          type: string
+        last_name:
+          type: string
+        first_name:
+          type: string
+        phone:
+          type: string
+        street:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        longitude:
+          type: string
+        blogs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Blog"
+      additionalProperties: false
+    BlogsResult:
+      properties:
+        total_blogs:
+          type: int32
+        offset:
+          type: int32
+        limit:
+          type: int32
+        blogs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Blog"
+      additionalProperties: false
+    Blog:
+      properties:
+        user_id:
+          type: string
+        title:
+          type: string
+        content_text:
+          type: string
+        photo_url:
+          type: string
+        created_at:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        content_html:
+          type: string
+        category:
+          type: string
+        updated_at:
+          type: string
+      additionalProperties: false
+

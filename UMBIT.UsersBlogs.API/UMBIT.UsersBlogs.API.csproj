@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core.API\UMBIT.Prototico.Core.API.csproj" />
     <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core\UMBIT.Prototico.Core.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.API.Contracts\UMBIT.UsersBlogs.API.Contracts.csproj" />
     <ProjectReference Include="..\UMBIT.UsersBlogs.API.Mappers\UMBIT.UsersBlogs.API.Mappers.csproj" />
     <ProjectReference Include="..\UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj" />
     <ProjectReference Include="..\UMBIT.UsersBlogs.Infra\UMBIT.UsersBlogs.Infra.csproj" />
