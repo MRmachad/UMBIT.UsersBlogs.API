@@ -9,11 +9,13 @@ Docker Compose
 Configuração do Banco de Dados
 Certifique-se de ter o Docker Compose instalado e configure as informações de conexão no arquivo appsettings.json ou secret.json:
 
+```console
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=mariadb;Port=3306;Database=seu_banco_de_dados;User=seu_usuario;Password=sua_senha;"
   }
 }
+```
 
 Substitua seu_banco_de_dados, seu_usuario e sua_senha pelos valores apropriados.
 
@@ -22,9 +24,9 @@ Abra um terminal na raiz do projeto.
 
 Execute o seguinte comando para construir e iniciar os contêineres definidos no arquivo docker-compose.yml:
 
-bash
-Copy code
+```console
 docker-compose up -d
+```
 Isso iniciará a aplicação .NET Core e o MariaDB em contêineres separados.
 
 Acesse a aplicação em http://localhost:4950/swagger.
