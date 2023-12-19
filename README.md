@@ -17,7 +17,7 @@ Caso a execução seja LOCAL cetitifique de ter o BD intalado e configure as inf
 }
 ```
 
-Substitua seu_banco_de_dados, seu_usuario e sua_senha pelos valores apropriados. Se a execução for via DOCKER essa informação é passada por varaivel de ambiente no arquivo docker compose. 
+Substitua seu_banco_de_dados, seu_usuario e sua_senha pelos valores apropriados. Se a execução for via DOCKER essa informação é passada por varaivel de ambiente no arquivo docker compose (se atente ao path do volume caso visto o sistema operacional usado). 
 
 ## Executando a Aplicação via Docker Compose
 Abra um terminal na raiz do projeto.
