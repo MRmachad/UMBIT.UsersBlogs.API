@@ -14,11 +14,12 @@ namespace Prototico.Core.API.Configurate.ApiConfigurate
     {
         public static void AddUMBITServiceMySQL(this IServiceCollection services, IConfiguration configuration, string nameConnectString)
         {
-
             StackTrace stackTrace = new StackTrace();
             var nameApi = stackTrace.GetFrame(1).GetMethod().DeclaringType.Assembly.GetName().Name;
-
             var conexao = configuration.GetConnectionString(nameConnectString) ?? "";
+
+            Console.WriteLine(nameApi + "___" + conexao);
+
             services.AddDbContext<DbContext, DataContext>(options => options.UseMySql(conexao, ServerVersion.AutoDetect(conexao), b => b.MigrationsAssembly(nameApi)));
             services.AddScoped<IUnidadeDeTrabalho, UnidadeDeTrabalho>();
         }

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UMBIT.UsersBlogs.API.Contracts\UMBIT.UsersBlogs.API.Contracts.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -87,6 +87,7 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
     public class RequestResponse<T> : RequestResponseBase where T: class
     {
         public T Frombory { get; set; } 
+
     }
     public abstract class RequestResponseBase
     {
@@ -95,6 +96,10 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
 
         private ICollection<string> Erros = new List<string>();
 
+        public RequestResponseBase()
+        {
+                this.ValidationResult = new ValidationResult();
+        }
         public void AdicionarErro(string erro)
         {
             this.ValidationResult.Errors.Add(new ValidationFailure() { ErrorMessage = erro });

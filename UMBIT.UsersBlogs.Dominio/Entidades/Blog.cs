@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.UsersBlogs.Dominio.Entidades
 {
-    public class Blog
+    public class Blog : CoreBaseEntity
     {
         public int UserId { get; set; }
 

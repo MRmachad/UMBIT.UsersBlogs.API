@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.UsersBlogs.Dominio.Entidades
 {
-    public class User
+    public class User : CoreBaseEntity
     {
         public int Id { get; set; }
         public string Gender { get; set; }
@@ -30,6 +27,8 @@ namespace UMBIT.UsersBlogs.Dominio.Entidades
 
         public string Country { get; set; }
         public double Longitude { get; set; }
+
+        public virtual List<Blog> Blogs { get; set; }   
     }
 
 

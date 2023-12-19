@@ -5,6 +5,8 @@ Building Blocks/core/UMBIT.Prototico.Core.API/obj
 Building Blocks/core/UMBIT.Prototico.Core.API/bin
 UMBIT.UsersBlogs.API/obj
 UMBIT.UsersBlogs.API/bin
+UMBIT.UsersBlogs.API.Mappers/obj
+UMBIT.UsersBlogs.API.Mappers/bin
 UMBIT.UsersBlogs.Dominio/obj
 UMBIT.UsersBlogs.Dominio/bin
 UMBIT.UsersBlogs.Infra/obj

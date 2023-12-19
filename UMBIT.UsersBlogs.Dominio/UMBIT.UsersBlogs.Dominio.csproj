@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Servicos\" />
+    <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core.API\UMBIT.Prototico.Core.API.csproj" />
+    <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core\UMBIT.Prototico.Core.csproj" />
   </ItemGroup>
 
 </Project>

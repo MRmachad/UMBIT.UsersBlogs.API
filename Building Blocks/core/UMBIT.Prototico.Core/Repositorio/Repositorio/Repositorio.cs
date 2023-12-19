@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.Core.Repositorio.Repositorio
 {
@@ -12,7 +14,7 @@ namespace UMBIT.Core.Repositorio.Repositorio
     {
         protected readonly DbContext Contexto;
 
-        protected const int TAMANHO_PAGINA = 50;
+        protected const int TAMANHO_PAGINA = 100;
 
         public Repositorio(DbContext contexto)
         {
@@ -49,6 +51,25 @@ namespace UMBIT.Core.Repositorio.Repositorio
             {
                 return this.Contexto.Set<T>().AsNoTracking().Where(predicado);
             });
+        }
+        public virtual void AdicionetOuAtualize(T objeto, params object[] args)
+        {
+            MiddlewareDeRepositorio(() =>
+            {
+                var _objeto = this.Contexto.Set<T>().Find(args);
+                if (_objeto == null)
+                {
+                    var entryAttachObj = this.Contexto.Set<T>().Attach(objeto);
+
+                    entryAttachObj.State = EntityState.Added;
+                }
+                else
+                {
+                    this.Contexto.Entry(_objeto).State = EntityState.Detached;
+                   this.Contexto.Entry(objeto).State = EntityState.Modified;
+                }
+            });
+
         }
 
         public virtual void Adicione(T objeto)
@@ -95,6 +116,21 @@ namespace UMBIT.Core.Repositorio.Repositorio
             });
         }
 
+        public virtual void RemovaTodos(params T[] objetos)
+        {
+            MiddlewareDeRepositorio(() =>
+            {
+                this.Contexto.Set<T>().RemoveRange(objetos);
+            });
+        }
+        public virtual void RemovaTodos()
+        {
+            MiddlewareDeRepositorio(() =>
+            {
+                var objetos = this.ObtenhaTodos();
+                this.Contexto.Set<T>().RemoveRange(objetos);
+            });
+        }
         protected void MiddlewareDeRepositorio(Action method)
         {
             try
@@ -119,6 +155,6 @@ namespace UMBIT.Core.Repositorio.Repositorio
             }
         }
 
-        
+
     }
 }

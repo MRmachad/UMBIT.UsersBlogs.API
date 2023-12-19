@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Contexto\" />
-    <Folder Include="Repositorios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Building Blocks\core\UMBIT.Prototico.Core\UMBIT.Prototico.Core.csproj" />
+    <ProjectReference Include="..\UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

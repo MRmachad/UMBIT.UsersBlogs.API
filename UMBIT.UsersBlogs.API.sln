@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMBIT.UsersBlogs.API", "UMBIT.UsersBlogs.API\UMBIT.UsersBlogs.API.csproj", "{51C77332-8CBF-43A0-BEED-8871FBC7F0C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMBIT.UsersBlogs.API", "UMBIT.UsersBlogs.API\UMBIT.UsersBlogs.API.csproj", "{51C77332-8CBF-43A0-BEED-8871FBC7F0C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMBIT.UsersBlogs.Dominio", "UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj", "{AB0BFD8E-44B0-45CD-8C7C-54F28DE64633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMBIT.UsersBlogs.Dominio", "UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj", "{AB0BFD8E-44B0-45CD-8C7C-54F28DE64633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMBIT.UsersBlogs.Infra", "UMBIT.UsersBlogs.Infra\UMBIT.UsersBlogs.Infra.csproj", "{8BF5EE19-8BBA-4859-B89A-5F45E7C5DD8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMBIT.UsersBlogs.Infra", "UMBIT.UsersBlogs.Infra\UMBIT.UsersBlogs.Infra.csproj", "{8BF5EE19-8BBA-4859-B89A-5F45E7C5DD8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - InterfaceWeb", "1 - InterfaceWeb", "{AED62E31-7007-4A11-BB10-004B53BD13D8}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMBIT.Prototico.Core.API", "Building Blocks\core\UMBIT.Prototico.Core.API\UMBIT.Prototico.Core.API.csproj", "{3A999E79-0371-4EB6-8158-6AD091E01143}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B8D77778-2E32-4AED-9F83-26088664B955}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMBIT.UsersBlogs.API.Mappers", "UMBIT.UsersBlogs.API.Mappers\UMBIT.UsersBlogs.API.Mappers.csproj", "{4A46A04F-9CC3-4836-9106-5FBE1682D0F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMBIT.UsersBlogs.API.Contracts", "UMBIT.UsersBlogs.API.Contracts\UMBIT.UsersBlogs.API.Contracts.csproj", "{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{3A999E79-0371-4EB6-8158-6AD091E01143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A999E79-0371-4EB6-8158-6AD091E01143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A999E79-0371-4EB6-8158-6AD091E01143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A46A04F-9CC3-4836-9106-5FBE1682D0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A46A04F-9CC3-4836-9106-5FBE1682D0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A46A04F-9CC3-4836-9106-5FBE1682D0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A46A04F-9CC3-4836-9106-5FBE1682D0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +72,8 @@ Global
 		{1C4DCC3A-AD46-4FED-9F0C-D4266C0386C9} = {B8D77778-2E32-4AED-9F83-26088664B955}
 		{3A999E79-0371-4EB6-8158-6AD091E01143} = {B8D77778-2E32-4AED-9F83-26088664B955}
 		{B8D77778-2E32-4AED-9F83-26088664B955} = {782439FF-1ACE-4080-9017-FC154A7542A4}
+		{4A46A04F-9CC3-4836-9106-5FBE1682D0F1} = {AED62E31-7007-4A11-BB10-004B53BD13D8}
+		{E15F973E-DC57-4B1D-A2A7-17AE5DACE80A} = {AED62E31-7007-4A11-BB10-004B53BD13D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76A8F8B8-8F91-40D6-B0EA-D673AFF83DB4}

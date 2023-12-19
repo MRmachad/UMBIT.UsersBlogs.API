@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UMBIT.Core.Repositorio;
+using UMBIT.Core.Repositorio.BaseEntity;
 using UMBIT.Core.Repositorio.Repositorio;
 using UMBIT.CORE.API.Servico.Interface;
+using UMBIT.Prototico.Core.Exececoes;
 
 namespace UMBIT.Prototico.Core.API.Servico.Basicos
 {
@@ -12,7 +14,8 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
         private IUnidadeDeTrabalho UnidadeDeTrabalho { get; set; }
         public ServicoDeEntidadeBase(IUnidadeDeTrabalho dataServiceFactory)
         {
-            Repositorio = dataServiceFactory.GetRepositorio<T>();
+            Repositorio = dataServiceFactory.ObtentorDeRepositorio<T>();
+            this.UnidadeDeTrabalho = dataServiceFactory;
         }
         public void AtualizeEntidade(T Entidade)
         {
@@ -23,20 +26,20 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro Ao atualizar entidade", ex);
+                throw new UMBITExeception("Erro Ao atualizar entidade", ex);
             }
         }
 
-        public T ObtenhaEntidade(Guid id)
+        public T ObtenhaEntidade(params object[] args)
         {
             try
             {
-                return Repositorio.ObtenhaUnico(id);
+                return Repositorio.ObtenhaUnico(args);
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro Ao obter entidade", ex);
+                throw new UMBITExeception("Erro Ao obter entidade", ex);
             }
         }
 
@@ -48,27 +51,35 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro Ao obter entidades", ex);
+                throw new UMBITExeception("Erro Ao obter entidades", ex);
             }
         }
 
-        public void RemovaEntidade(T Entidade)
+        public void RemovaEntidade(params object[] args)
         {
             try
             {
-                Repositorio.Remova(Entidade);
+                var objeto = this.Repositorio.ObtenhaUnico(args);
+                Repositorio.Remova(objeto);
                 UnidadeDeTrabalho.SalveAlteracoes();
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro Ao remover entidade", ex);
+                throw new UMBITExeception("Erro Ao remover entidade", ex);
             }
         }
 
         public void AdicionaObjeto(T Entidade)
         {
-            Repositorio.Adicione(Entidade);
-            UnidadeDeTrabalho.SalveAlteracoes();
+            try
+            {
+                Repositorio.Adicione(Entidade);
+                UnidadeDeTrabalho.SalveAlteracoes();
+            }
+            catch (Exception ex)
+            {
+                throw new UMBITExeception("Erro Ao adicionar entidade", ex);
+            }
         }
     }
 }

@@ -9,13 +9,13 @@ namespace UMBIT.Core.Repositorio.EntityConfigurate
 
         public void Configure(EntityTypeBuilder<T> builder)
         {
-            builder.HasKey((T be) => be.Id);
+            builder.HasKey((T be) => be.IdKey);
             ConfigureEntidade(builder);
             builder.Property((T be) => be.DataCriacao).IsRequired();
             builder.Property((T be) => be.DataAtualizacao).IsRequired();
         }
 
-        
+
         public abstract void ConfigureEntidade(EntityTypeBuilder<T> builder);
     }
 }

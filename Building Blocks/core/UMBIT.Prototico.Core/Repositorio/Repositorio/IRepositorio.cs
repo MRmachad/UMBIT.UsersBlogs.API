@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System;
 using System.Runtime.CompilerServices;
+using UMBIT.Core.Repositorio.BaseEntity;
 
 namespace UMBIT.Core.Repositorio.Repositorio
 {
@@ -41,6 +42,12 @@ namespace UMBIT.Core.Repositorio.Repositorio
         void Adicione(T objeto);
 
         /// <summary>
+        /// Adiciona ou atualize objetos na Base de Dados
+        /// </summary>
+        /// <param name="objeto">Objetos a serem adicionados ou atualizados</param>
+        void AdicionetOuAtualize(T objeto, params object[] args);
+
+        /// <summary>
         /// Adiciona objetos na Base de Dados
         /// </summary>
         /// <param name="objeto">Objetos a serem adicionados</param>
@@ -57,5 +64,16 @@ namespace UMBIT.Core.Repositorio.Repositorio
         /// </summary>
         /// <param name="objeto">Objeto a ser removido</param>
         void Remova(T objeto);
+
+        /// <summary>
+        /// Remova objetos da base de dados
+        /// </summary>
+        /// <param name="objeto">Objetos a ser removido</param>
+        void RemovaTodos(params T[] objetos);
+
+        /// <summary>
+        /// Remova objetos da base de dados
+        /// </summary>
+        void RemovaTodos();
     }
 }

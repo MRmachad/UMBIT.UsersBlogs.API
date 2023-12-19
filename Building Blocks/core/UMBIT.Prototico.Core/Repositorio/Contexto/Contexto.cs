@@ -4,6 +4,7 @@ using UMBIT.Core.Repositorio.EntityConfigurate;
 using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 namespace UMBIT.Core.Repositorio.Contexto
 {
 
@@ -15,11 +16,13 @@ namespace UMBIT.Core.Repositorio.Contexto
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 try
                 {
+                    if (assembly.FullName.StartsWith("UMBIT"))
+                        Console.WriteLine(assembly.FullName);
                     if (assembly != null)
                         assembly.GetTypes()
                         .Where(t =>
@@ -59,7 +62,6 @@ namespace UMBIT.Core.Repositorio.Contexto
                     {
                         baseEntity.IdKey = Guid.NewGuid();
                     }
-
                     baseEntity.DataCriacao = DateTime.Now;
                     baseEntity.DataAtualizacao = DateTime.Now;
                 }
@@ -72,6 +74,13 @@ namespace UMBIT.Core.Repositorio.Contexto
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies()
+                          .ConfigureWarnings(warnings => warnings.Log(CoreEventId.DetachedLazyLoadingWarning));
+
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 
 }
