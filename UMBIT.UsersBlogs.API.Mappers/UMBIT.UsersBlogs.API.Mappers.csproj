@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UMBIT.UsersBlogs.API.Contracts\UMBIT.UsersBlogs.API.Contracts.csproj" />
     <ProjectReference Include="..\UMBIT.UsersBlogs.Dominio\UMBIT.UsersBlogs.Dominio.csproj" />
   </ItemGroup>
 

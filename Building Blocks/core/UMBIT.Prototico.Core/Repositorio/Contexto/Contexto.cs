@@ -4,6 +4,7 @@ using UMBIT.Core.Repositorio.EntityConfigurate;
 using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 namespace UMBIT.Core.Repositorio.Contexto
 {
 
@@ -73,6 +74,13 @@ namespace UMBIT.Core.Repositorio.Contexto
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies()
+                          .ConfigureWarnings(warnings => warnings.Log(CoreEventId.DetachedLazyLoadingWarning));
+
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 
 }

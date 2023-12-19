@@ -13,6 +13,7 @@ COPY ["UMBIT.UsersBlogs.API/UMBIT.UsersBlogs.API.csproj", "UMBIT.UsersBlogs.API/
 COPY ["Building Blocks/core/UMBIT.Prototico.Core.API/UMBIT.Prototico.Core.API.csproj", "Building Blocks/core/UMBIT.Prototico.Core.API/"]
 COPY ["Building Blocks/core/UMBIT.Prototico.Core/UMBIT.Prototico.Core.csproj", "Building Blocks/core/UMBIT.Prototico.Core/"]
 COPY ["UMBIT.UsersBlogs.API.Mappers/UMBIT.UsersBlogs.API.Mappers.csproj", "UMBIT.UsersBlogs.API.Mappers/"]
+COPY ["UMBIT.UsersBlogs.API.Contracts/UMBIT.UsersBlogs.API.Contracts.csproj", "UMBIT.UsersBlogs.API.Contracts/"]
 COPY ["UMBIT.UsersBlogs.Dominio/UMBIT.UsersBlogs.Dominio.csproj", "UMBIT.UsersBlogs.Dominio/"]
 COPY ["UMBIT.UsersBlogs.Infra/UMBIT.UsersBlogs.Infra.csproj", "UMBIT.UsersBlogs.Infra/"]
 RUN dotnet restore "./UMBIT.UsersBlogs.API/./UMBIT.UsersBlogs.API.csproj"

@@ -18,7 +18,7 @@ namespace Prototico.Core.API.Configurate.ApiConfigurate
             var nameApi = stackTrace.GetFrame(1).GetMethod().DeclaringType.Assembly.GetName().Name;
             var conexao = configuration.GetConnectionString(nameConnectString) ?? "";
 
-            Console.WriteLine(nameApi + "-" + conexao);
+            Console.WriteLine(nameApi + "___" + conexao);
 
             services.AddDbContext<DbContext, DataContext>(options => options.UseMySql(conexao, ServerVersion.AutoDetect(conexao), b => b.MigrationsAssembly(nameApi)));
             services.AddScoped<IUnidadeDeTrabalho, UnidadeDeTrabalho>();

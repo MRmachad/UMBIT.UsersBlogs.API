@@ -29,7 +29,7 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// </remarks>
         /// <returns>Ok</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("repositorio/sincronize")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Sincronizacao();
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Sincronize();
 
     }
 
@@ -41,12 +41,12 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <remarks>
         /// Listagem de Usuarios
         /// </remarks>
+        /// <param name="fistName">fistName</param>
         /// <param name="offset">offset</param>
         /// <param name="countListagem">countListagem</param>
-        /// <param name="fistName">fistName</param>
         /// <returns>Ok</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Usuario/lista/{offset}/{countListagem}/{fistName}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<UsersResult>> Listagem(int offset, int countListagem, string fistName);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Usuario/lista")]
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<UsersResult>> ObtenhaTodosUsuarios([Microsoft.AspNetCore.Mvc.FromQuery] string fistName, [Microsoft.AspNetCore.Mvc.FromQuery] int? offset = 0, [Microsoft.AspNetCore.Mvc.FromQuery] int? countListagem = 50);
 
         /// <remarks>
         /// Obtenha Unico Usuario
@@ -54,7 +54,7 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <param name="id">id</param>
         /// <returns>Ok</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Usuario/unico/{id}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<User>> Unico(int id);
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<User>> ObtenhaUnicoUsuario(int id);
 
         /// <remarks>
         /// Remova Unico Usuario
@@ -62,7 +62,7 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <param name="id">id</param>
         /// <returns>Ok</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("Usuario/remova/{id}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Remocao(int id);
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> RemovaUsuario(int id);
 
     }
 
@@ -74,12 +74,12 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <remarks>
         /// Listagem de Blogs
         /// </remarks>
+        /// <param name="title">title</param>
         /// <param name="offset">offset</param>
         /// <param name="countListagem">countListagem</param>
-        /// <param name="title">title</param>
         /// <returns>Ok</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Blog/lista/{offset}/{countListagem}/{title}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<BlogsResult>> Listagem2(int offset, int countListagem, string title);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Blog/lista")]
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<BlogsResult>> ObtenhaTodosBlogs([Microsoft.AspNetCore.Mvc.FromQuery] string title, [Microsoft.AspNetCore.Mvc.FromQuery] int? offset = 0, [Microsoft.AspNetCore.Mvc.FromQuery] int? countListagem = 100);
 
         /// <remarks>
         /// Obtenha Unico Blog
@@ -87,7 +87,7 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <param name="id">id</param>
         /// <returns>Ok</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("Blog/unico/{id}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<Blog>> Unico2(int id);
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ActionResult<Blog>> ObtenhaUnicoBlog(int id);
 
         /// <remarks>
         /// Remova Unico Blog
@@ -95,7 +95,7 @@ namespace UMBIT.UsersBlogs.API.Contracts
         /// <param name="id">id</param>
         /// <returns>Ok</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("Blog/remova/{id}")]
-        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Remocao2(int id);
+        public abstract System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> RemovaBlog(int id);
 
     }
 

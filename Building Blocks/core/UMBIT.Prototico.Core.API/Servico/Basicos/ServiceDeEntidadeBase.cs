@@ -15,6 +15,7 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
         public ServicoDeEntidadeBase(IUnidadeDeTrabalho dataServiceFactory)
         {
             Repositorio = dataServiceFactory.ObtentorDeRepositorio<T>();
+            this.UnidadeDeTrabalho = dataServiceFactory;
         }
         public void AtualizeEntidade(T Entidade)
         {
@@ -58,7 +59,7 @@ namespace UMBIT.Prototico.Core.API.Servico.Basicos
         {
             try
             {
-                var objeto = this.ObtenhaEntidade(args);
+                var objeto = this.Repositorio.ObtenhaUnico(args);
                 Repositorio.Remova(objeto);
                 UnidadeDeTrabalho.SalveAlteracoes();
             }

@@ -10,6 +10,7 @@
   },
   "codeGenerators": {
     "openApiToCSharpController": {
+      "isAspNetCore": true,
       "controllerBaseClass": "UMBIT.UsersBlogs.API.Contracts.UsersBlogsBaseController",
       "controllerStyle": "Abstract",
       "controllerTarget": "AspNetCore",

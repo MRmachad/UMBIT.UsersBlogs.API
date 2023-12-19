@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using UMBIT.Prototico.Core.Exececoes;
 using UMBIT.UsersBlogs.API.Contracts;
@@ -23,17 +24,14 @@ namespace UMBIT.UsersBlogs.API.Controllers
             this.ServicoDeUser = servicoDeUser;
         }
 
-        public override async Task<ActionResult<UsersResult>> Listagem(int offset, int countListagem, string fistName)
+        public override async Task<ActionResult<UsersResult>> ObtenhaTodosUsuarios([Microsoft.AspNetCore.Mvc.FromQuery] string fistName, [Microsoft.AspNetCore.Mvc.FromQuery] int? offset = 0, [Microsoft.AspNetCore.Mvc.FromQuery] int? countListagem = 100)
         {
-            //return Ok();   ]
-            //return new UsersResult();
-            return await MiddlewareDeRetornoAsync(() =>
+
+            return await MiddlewareDeRetornoAsync<UsersResult>(async () =>
             {
 
                 if (offset < 0 || countListagem <= 0 || countListagem > COUNT_LISTAGEM_MAX)
-                {
-                    throw new UMBITExeception("Os parametros de filtragem são invalidos!");
-                }
+                   return BadRequest("Os parametros de filtragem são invalidos!");
 
                 var users = this.ServicoDeUser.ObtenhaEntidades();
 
@@ -45,61 +43,36 @@ namespace UMBIT.UsersBlogs.API.Controllers
                     Total_users = users.Count()
                 };
 
-                users = String.IsNullOrWhiteSpace(fistName) ? users : this.ServicoDeUser.ObtenhaEntidades().Where(t => t.FirstName.ToUpper() == fistName.ToUpper());
+                users = String.IsNullOrWhiteSpace(fistName) ? users : this.ServicoDeUser.ObtenhaEntidades().Where(t => t.FirstName.ToUpper().Contains(fistName.ToUpper()));
 
 
-                res.Users = this.Mapper.Map<List<Contracts.User>>(users.OrderBy(t => t.FirstName).Skip(offset).Take(countListagem));
+                res.Users = this.Mapper.Map<List<Contracts.User>>(users.OrderBy(t => t.Id).Skip(offset.Value).Take(countListagem.Value));
 
-                return Task.FromResult(Ok(res));
+                return Ok(res);
             });
         }
 
-        [HttpGet]
-        [Route("todos")]
-        public async Task<IActionResult> ObtenhaTodos(string fistName, int offset = 0, int countListagem = COUNT_LISTAGEM_MAX)
+
+        public override async Task<ActionResult<Contracts.User>> ObtenhaUnicoUsuario(int id)
         {
-            return await MiddlewareDeRetornoAsync(() =>
-            {
-
-                if (offset < 0 || countListagem <= 0 || countListagem > COUNT_LISTAGEM_MAX)
-                    throw new UMBITExeception("Os parametros de filtragem são invalidos!");
-
-                var users = String.IsNullOrWhiteSpace(fistName) ? this.ServicoDeUser.ObtenhaEntidades() : this.ServicoDeUser.ObtenhaEntidades().Where(t => t.FirstName.ToUpper() == fistName.ToUpper());
-
-                return Task.FromResult(Ok(users.OrderBy(t => t.FirstName).Skip(offset).Take(countListagem).ToList()));
-            });
-        }
-
-        [HttpGet]
-        [Route("unico")]
-        public async Task<IActionResult> ObtenhaUnico(int id)
-        {
-            return await MiddlewareDeRetornoAsync(() =>
+            return await MiddlewareDeRetornoAsync(async () =>
             {
                 var user = this.ServicoDeUser.ObtenhaEntidade(id);
-                return Task.FromResult(Ok(user));
+
+                if (user == null) return BadRequest("Nenhum Usuario Encontrado!");
+
+                return await Task.FromResult(Ok(this.Mapper.Map<Contracts.User>(user)));
             });
         }
 
-        public override Task<IActionResult> Remocao(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        [HttpDelete]
-        [Route("remova")]
-        public async Task<IActionResult> Remova(int id)
+        public override async Task<IActionResult> RemovaUsuario(int id)
         {
-            return await MiddlewareDeRetornoAsync(() =>
+            return await MiddlewareDeRetornoAsync(async () =>
             {
                 this.ServicoDeUser.RemovaEntidade(id);
-                return Task.FromResult(Ok());
+                return await Task.FromResult(Ok());
             });
-        }
-
-        public override Task<ActionResult<User>> Unico(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

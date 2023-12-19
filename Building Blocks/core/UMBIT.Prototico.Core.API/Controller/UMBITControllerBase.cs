@@ -7,27 +7,45 @@ namespace UMBIT.Prototico.Core.API.Controller
 {
     public abstract class UMBITControllerBase : ControllerBase
     {
-        protected IActionResult MiddlewareDeRetorno<T>(Func<T> retorno) where T : IActionResult
+        protected ActionResult MiddlewareDeRetorno(Func<ActionResult> retorno)
         {
             try
             {
                 return retorno();
 
             }
-            catch(UMBITExeception ex)
+            catch (UMBITExeception ex)
             {
                 return BadRequest(ex.Mensagem);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
-        protected async Task<IActionResult> MiddlewareDeRetornoAsync(Func<Task<IActionResult>> retorno) 
+        protected async Task<ActionResult<T>> MiddlewareDeRetornoAsync<T>(Func<Task<ActionResult<T>>> retorno) where T : class 
         {
             try
             {
                 return await retorno();
+
+            }
+            catch (UMBITExeception ex)
+            {
+                var res = BadRequest(ex.Mensagem);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        protected async Task<ActionResult> MiddlewareDeRetornoAsync(Func<Task<ActionResult>> retorno)
+        {
+            try
+            {
+                return await retorno();
+
             }
             catch (UMBITExeception ex)
             {

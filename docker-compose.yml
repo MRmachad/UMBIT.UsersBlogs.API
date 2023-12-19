@@ -18,6 +18,8 @@ services:
   webapi:
     build: "."
     container_name: userblog_api
+    depends_on:
+      - db
     environment:
       ConnectionStrings__mariadb : "Server=userblog_db;Port=3306;User=root;Password=qwerty;Database=UserBlog"
     ports:

@@ -65,7 +65,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Blog");
+                    b.ToTable("Blog", (string)null);
                 });
 
             modelBuilder.Entity("UMBIT.UsersBlogs.Dominio.Entidades.User", b =>
@@ -130,7 +130,7 @@ namespace UMBIT.UsersBlogs.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("UMBIT.UsersBlogs.Dominio.Entidades.Blog", b =>

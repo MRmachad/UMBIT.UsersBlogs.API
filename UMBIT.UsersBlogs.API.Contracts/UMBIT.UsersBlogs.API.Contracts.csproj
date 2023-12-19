@@ -43,7 +43,7 @@
 		</None>
 	</ItemGroup>
 
-	<Target Name="NSwag" Outputs="%(OpenApiToClientCode.Identity)" BeforeTargets="PrepareForBuild">
+	<Target Condition="'$(Configuration)' == 'Debug'" Name="NSwag" Outputs="%(OpenApiToClientCode.Identity)" BeforeTargets="PrepareForBuild">
 
 		<Exec Command="$(NSwagExe_Net60) run nswag.json /variables:InputFile=@(OpenApiFiles -> '%(Identity)')" />
 		<Message Importance="high" Text="%(OpenApiFiles.Identity)" />

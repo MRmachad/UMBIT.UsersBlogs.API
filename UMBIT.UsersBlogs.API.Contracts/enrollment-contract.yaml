@@ -5,30 +5,28 @@ info:
   version: "0.1"
   x-logo:
     url: "https://"
-    altText: Ooja IT
+    altText: UMBIT
 servers:
   - url: https://{environment}/api/v1
     variables:
       environment:
-        default: localhost:5001
-        enum:
-          - www.ooja.com 
-          - localhost:5001
+        default: localhost:4950
+          - localhost:4950
 paths:
   "/repositorio/sincronize":
     post:
       tags:
         - Repositorio
-      operationId: Sincronizacao
+      operationId: Sincronize
       description: Sincronize banco de com repositorio externo
       responses:
         "200":
           description: Ok
-  "/Usuario/lista/{offset}/{countListagem}/{fistName}":
+  "/Usuario/lista":
     get:
       tags:
         - Usuario
-      operationId: Listagem
+      operationId: ObtenhaTodosUsuarios
       description: Listagem de Usuarios
       responses:
         "200":
@@ -38,31 +36,31 @@ paths:
               schema:
                 $ref: "#/components/schemas/UsersResult"
     parameters:
+    - name: fistName
+      in: query
+      description: fistName
+      schema:
+        type: string
     - name: offset
-      in: path
-      required: true
+      in: query
       description: offset
+      allowEmptyValue: true
       schema:
         type: integer
         format: int32
+        default: 0
     - name: countListagem
-      in: path
-      required: true
+      in: query
       description: countListagem
       schema:
         type: integer
         format: int32
-    - name: fistName
-      in: path
-      required: true
-      description: fistName
-      schema:
-        type: string
+        default: 50
   "/Usuario/unico/{id}":
     get:
       tags:
         - Usuario
-      operationId: Unico
+      operationId: ObtenhaUnicoUsuario
       description: Obtenha Unico Usuario
       responses:
         "200":
@@ -83,7 +81,7 @@ paths:
     delete:
       tags:
         - Usuario
-      operationId: Remocao
+      operationId: RemovaUsuario
       description: Remova Unico Usuario
       responses:
         "200":
@@ -96,11 +94,11 @@ paths:
       schema:
         type: integer
         format: int32
-  "/Blog/lista/{offset}/{countListagem}/{title}":
+  "/Blog/lista":
     get:
       tags:
         - Blog
-      operationId: Listagem
+      operationId: ObtenhaTodosBlogs
       description: Listagem de Blogs
       responses:
         "200":
@@ -110,31 +108,30 @@ paths:
               schema:
                 $ref: "#/components/schemas/BlogsResult"
     parameters:
+    - name: title
+      in: query
+      description: title
+      schema:
+        type: string
     - name: offset
-      in: path
-      required: true
+      in: query
       description: offset
       schema:
         type: integer
         format: int32
+        default: 0
     - name: countListagem
-      in: path
-      required: true
+      in: query
       description: countListagem
       schema:
         type: integer
         format: int32
-    - name: title
-      in: path
-      required: true
-      description: title
-      schema:
-        type: string
+        default: 100
   "/Blog/unico/{id}":
     get:
       tags:
         - Blog
-      operationId: Unico
+      operationId: ObtenhaUnicoBlog
       description: Obtenha Unico Blog
       responses:
         "200":
@@ -155,7 +152,7 @@ paths:
     delete:
       tags:
         - Blog
-      operationId: Remocao
+      operationId: RemovaBlog
       description: Remova Unico Blog
       responses:
         "200":

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UMBIT.UsersBlogs.API.Contracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f6b98c53e491e94fdc362bce98ea9a24a50b056")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40dce58f7806e6dc50d948ed600d31bda293e2b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("UMBIT.UsersBlogs.API.Contracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UMBIT.UsersBlogs.API.Contracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using UMBIT.Prototico.Core.API.Controller;
+using UMBIT.UsersBlogs.API.Contracts;
 using UMBIT.UsersBlogs.Dominio.Servicos.Interfaces;
 
 namespace UMBIT.UsersBlogs.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RepositorioController : UMBITControllerBase
+    public class RepositorioController : RepositorioControllerBase
     {
 
         private IServicoDeRepositorioExterno ServicoDeRepositorioExterno;
@@ -17,9 +16,7 @@ namespace UMBIT.UsersBlogs.API.Controllers
             this.ServicoDeRepositorioExterno = servicoDeRepositorioExterno;
         }
 
-        [HttpPost]
-        [Route("sync")]
-        public async Task<IActionResult> SincronizeRepositorio()
+        public override async Task<IActionResult> Sincronize()
         {
             return await MiddlewareDeRetornoAsync(async () =>
             {
@@ -28,5 +25,6 @@ namespace UMBIT.UsersBlogs.API.Controllers
                 return Ok();
             });
         }
+
     }
 }
